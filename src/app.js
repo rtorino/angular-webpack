@@ -1,24 +1,5 @@
 'use strict';
 
-require('angular-ui-router'),
-require('./directives/player').name
+var playerComponent = require('./directives/player');
 
-angular.element(document).ready(function() {
-  var deps = [
-    'ui.router',
-    'app.directive.player'
-  ];
-
-  angular.module('app', deps)
-    .config(function($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/');
-
-      $stateProvider
-        .state('player', {
-          url: '/',
-          template: '<player></player>'
-        });
-    });
-
-    angular.bootstrap(document, ['app']);
-});
+module.exports = playerComponent;

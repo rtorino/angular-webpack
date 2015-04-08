@@ -68,7 +68,7 @@ gulp.task('watch', ['clearTarget', 'other'], function() {
   path = require('path');
   flo = require('fb-flo');
   flo(paths.distDir, {
-    port: 8888,
+    port: 8889,
     host: 'localhost',
     verbose: false,
     glob: ['**/*.js', '**/*.css', '**/*.html']

@@ -1,12 +1,18 @@
 {
-  "name": "player",
+  "name": "player-component",
   "version": "0.0.0",
   "homepage": "",
   "authors": [
     "Eskrima"
   ],
-  "description": "Angular video player",
-  "main": "dist/bundle.js",
+  "description": "AngularJS video player component",
+  "main": [
+    "dist/bundle.js",
+    "dist/vjs.eot",
+    "dist/vjs.svg",
+    "dist/vjs.ttf",
+    "dist/vjs.woff"
+  ],
   "license": "MIT",
   "private": true,
   "ignore": [
@@ -18,6 +24,6 @@
   ],
   "dependencies": {
     "angular": "~1.3.15",
-    "angular-ui-router": "~0.2.13"
+    "videojs": "~4.12.5"
   }
 }

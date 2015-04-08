@@ -1,9 +1,7 @@
 'use strict';
 
-module.exports = PlayerCtrl;
-
-function PlayerCtrl($state) {
+module.exports = [ '$state', function PlayerCtrl($state) {
   var vm = this;
 
-  vm.name = 'Video Player';
-}
+  vm.name = 'VideoJS Player';
+}];

@@ -2,6 +2,7 @@
 
 var path = require('path');
 var webpack = require('webpack');
+var BowerWebpackPlugin = require('bower-webpack-plugin');
 
 var appRoot = path.join(__dirname, '/src');
 var bowerRoot = path.join(__dirname, '/bower_components');
@@ -16,10 +17,9 @@ module.exports = {
     filename: 'bundle.js',
     chunkFilename: "[id].bundle.js"
   },
-  // externals: {
-  //   'angular': 'angular',
-  //   'angular-ui-router': 'angular-ui-router'
-  // },
+  externals: {
+    'angular': 'angular',
+  },
   module: {
     loaders: [
       {
@@ -27,36 +27,13 @@ module.exports = {
         loaders: ['style', 'css']
       },
       {
-        test: /\.scss$/,
-        loaders: ['style', 'css', "sass?includePaths[]=" + styleRoot]
-      },
-      // {
-      //   test: /\.html$/,
-      //   loader: 'ngtemplate!html'
-      // },
-      {
-        test: /\.woff$/,
-        loader: 'url?prefix=font/&limit=5000&mimetype=application/font-woff'
-      },
-      {
-        test: /\.ttf$/,
-        loader: 'file?prefix=font/'
-      },
-      {
-        test: /\.eot$/,
-        loader: 'file?prefix=font/'
-      },
-      {
-        test: /\.svg$/,
-        loader: 'file?prefix=font/'
+        test: /\.(woff|svg|ttf|eot)([\?]?.*)$/, 
+        loader: 'file-loader?name=[name].[ext]'
       }
     ],
     noParse: [
       path.join(bowerRoot, '/angular'),
-      path.join(bowerRoot, '/angular-route'),
-      path.join(bowerRoot, '/angular-ui-router'),
-      path.join(bowerRoot, '/angular-mocks'),
-      path.join(bowerRoot, '/jquery')
+      path.join(bowerRoot, '/videojs')
     ]
   },
   resolve: {
@@ -71,13 +48,13 @@ module.exports = {
     root: appRoot
   },
   plugins: [
+    new BowerWebpackPlugin({
+      searchResolveModulesDirectories: false
+    }),
     new webpack.ResolverPlugin([
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
     ], ['normal', 'loader']),
-    new webpack.ContextReplacementPlugin(/.*$/, /a^/),
-    new webpack.ProvidePlugin({
-      'angular': 'exports?window.angular!bower/angular'
-    })
+    new webpack.ContextReplacementPlugin(/.*$/, /a^/)
   ],
-  devtool: '#source-map'
+  devtool: 'eval'
 };
