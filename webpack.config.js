@@ -11,7 +11,8 @@ var styleRoot = appRoot + '/assets/styles';
 module.exports = {
   cache: true,
   debug: true,
-  entry: [appRoot + '/app.js'],
+  context: appRoot,
+  entry: 'app.js',
   output: {
     path: './dist',
     filename: 'bundle.js',
@@ -28,7 +29,7 @@ module.exports = {
       },
       {
         test: /\.(woff|svg|ttf|eot)([\?]?.*)$/, 
-        loader: 'file-loader?name=[name].[ext]'
+        loader: 'file?name=[name].[ext]'
       }
     ],
     noParse: [

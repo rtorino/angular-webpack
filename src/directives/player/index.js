@@ -19,7 +19,7 @@ module.exports = angular.module('app.component.player', deps)
         width: 864
       };
 
-      var videoId = 107;
+      var videoId = Math.ceil(Math.random() * 100);
       attrs.id = 'videojs' + videoId;
       
       element.attr('id', attrs.id);
@@ -27,7 +27,7 @@ module.exports = angular.module('app.component.player', deps)
       videojs(attrs.id, options, function() {
         this.src({
           type: attrs.type, 
-          src: 'http://pmd-bc-gujstreaming-test.guj.de/gujstreaming/hd_uds/68348640001/201501/68348640001_3986496343001_trailer-720p.mp4'
+          src: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4'
         });
       });
     }
