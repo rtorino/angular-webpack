@@ -16,7 +16,7 @@ module.exports = angular.module('app.component.player', deps)
         preload: 'auto',
         techOrder: ['html5', 'flash'],
         height: 480,
-        width: 864
+        width: '100%'
       };
 
       var videoId = Math.ceil(Math.random() * 100);
@@ -27,7 +27,7 @@ module.exports = angular.module('app.component.player', deps)
       videojs(attrs.id, options, function() {
         this.src({
           type: attrs.type, 
-          src: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4'
+          src: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4' // http://vjs.zencdn.net/v/oceans.mp4
         });
       });
     }
